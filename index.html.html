@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Calculadora</title>
+
+<style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:linear-gradient(135deg,#ffd6e7,#fff0f6);
+  font-family:Arial,sans-serif;
+}
+
+
+/* LOGIN */
+
+#login{
+  background:white;
+  width:330px;
+  padding:25px;
+  border-radius:25px;
+  border:4px solid #ff69b4;
+  text-align:center;
+  box-shadow:0 0 25px #ffb6d9;
+}
+
+
+#login h1{
+  color:#ff1493;
+  margin-bottom:20px;
+}
+
+
+#login input{
+  width:100%;
+  padding:12px;
+  margin:8px 0;
+  border-radius:12px;
+  border:2px solid #f87dba;
+}
+
+
+button{
+  cursor:pointer;
+}
+
+
+/* CALCULADORA */
+
+#calculadora{
+  display:none;
+}
+
+
+.caixa{
+  width:340px;
+  background:white;
+  padding:20px;
+  border-radius:25px;
+  border:4px solid #ff69b4;
+  box-shadow:0 0 25px #ffb6d9;
+}
+
+
+.kitty{
+  width:150px;
+  display:block;
+  margin:auto;
+}
+
+
+h2{
+  text-align:center;
+  color:#ff1493;
+  margin:10px;
+}
+
+
+.display{
+  width:100%;
+  height:70px;
+  background:#fff0f6;
+  border:none;
+  border-radius:15px;
+  text-align:right;
+  font-size:32px;
+  padding:15px;
+  margin-bottom:15px;
+}
+
+
+.botoes{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+}
+
+
+.botoes button{
+  height:60px;
+  border:none;
+  border-radius:15px;
+  font-size:22px;
+  font-weight:bold;
+}
+
+
+.numero{
+  background:#ffe4f1;
+}
+
+
+.operador{
+  background:#ff69b4;
+  color:white;
+}
+
+
+.igual{
+  background:#ff1493;
+  color:white;
+}
+
+
+.limpar{
+  background:#ff8fab;
+  color:white;
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<!-- LOGIN -->
+
+<div id="login">
+
+<h1>Login</h1>
+
+<input 
+id="email"
+type="email"
+placeholder="Email">
+
+
+<input
+id="senha"
+type="password"
+placeholder="Senha">
+
+
+<button onclick="entrar()">
+Entrar
+</button>
+
+
+</div>
+
+
+
+<!-- CALCULADORA -->
+
+<div id="calculadora">
+
+
+<div class="caixa">
+
+
+<img class="kitty"
+src="https://p7.hiclipart.com/preview/578/42/410/computer-icons-hello-kitty-clip-art-others.jpg">
+
+
+<h2>Calculadora 🐱</h2>
+
+
+<input
+id="display"
+class="display"
+readonly>
+
+
+<div class="botoes">
+
+
+<button class="limpar" onclick="limpar()">C</button>
+<button class="operador" onclick="add('(')">(</button>
+<button class="operador" onclick="add(')')">)</button>
+<button class="operador" onclick="add('/')">÷</button>
+
+
+<button class="numero" onclick="add('7')">7</button>
+<button class="numero" onclick="add('8')">8</button>
+<button class="numero" onclick="add('9')">9</button>
+<button class="operador" onclick="add('*')">×</button>
+
+
+<button class="numero" onclick="add('4')">4</button>
+<button class="numero" onclick="add('5')">5</button>
+<button class="numero" onclick="add('6')">6</button>
+<button class="operador" onclick="add('-')">−</button>
+
+
+<button class="numero" onclick="add('1')">1</button>
+<button class="numero" onclick="add('2')">2</button>
+<button class="numero" onclick="add('3')">3</button>
+<button class="operador" onclick="add('+')">+</button>
+
+
+<button class="numero" onclick="add('0')">0</button>
+<button class="numero" onclick="add('.')">.</button>
+<button class="igual" onclick="calcular()">=</button>
+
+
+</div>
+
+
+</div>
+
+</div>
+
+
+
+<script>
+
+
+function entrar(){
+
+let email =
+document.getElementById("email").value;
+
+let senha =
+document.getElementById("senha").value;
+
+
+// login de exemplo
+
+if(email=="alana.linda@gmail.com" &&
+senha=="123456"){
+
+document.getElementById("login").style.display="none";
+
+document.getElementById("calculadora").style.display="block";
+
+
+}else{
+
+alert("Email ou senha incorretos!");
+
+}
+
+}
+
+
+
+let display =
+document.getElementById("display");
+
+
+function add(valor){
+
+display.value += valor;
+
+}
+
+
+function limpar(){
+
+display.value="";
+
+}
+
+
+function calcular(){
+
+try{
+
+display.value =
+eval(display.value);
+
+}
+
+catch{
+
+display.value="Erro";
+
+}
+
+}
+
+
+document.addEventListener("keydown",function(e){
+
+if(e.key=="Enter"){
+calcular();
+}
+
+});
+
+
+</script>
+
+
+</body>
+</html>
