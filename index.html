@@ -1,198 +1,135 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Calculadora</title>
+<title>Calculadora Hello Kitty 🐱</title>
 
 <style>
 
 *{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
+margin:0;
+padding:0;
+box-sizing:border-box;
 }
 
 body{
-  min-height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  background:linear-gradient(135deg,#ffd6e7,#fff0f6);
-  font-family:Arial,sans-serif;
-}
-
-
-/* LOGIN */
-
-#login{
-  background:white;
-  width:330px;
-  padding:25px;
-  border-radius:25px;
-  border:4px solid #ff69b4;
-  text-align:center;
-  box-shadow:0 0 25px #ffb6d9;
-}
-
-
-#login h1{
-  color:#ff1493;
-  margin-bottom:20px;
-}
-
-
-#login input{
-  width:100%;
-  padding:12px;
-  margin:8px 0;
-  border-radius:12px;
-  border:2px solid #f87dba;
-}
-
-
-button{
-  cursor:pointer;
-}
-
-
-/* CALCULADORA */
-
-#calculadora{
-  display:none;
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(135deg,#ffd6e7,#fff0f6);
+font-family:Arial,sans-serif;
 }
 
 
 .caixa{
-  width:340px;
-  background:white;
-  padding:20px;
-  border-radius:25px;
-  border:4px solid #ff69b4;
-  box-shadow:0 0 25px #ffb6d9;
+width:340px;
+background:white;
+padding:20px;
+border-radius:25px;
+border:4px solid #ff69b4;
+box-shadow:0 0 25px #ffb6d9;
 }
 
 
 .kitty{
-  width:150px;
-  display:block;
-  margin:auto;
+width:160px;
+height:160px;
+object-fit:contain;
+display:block;
+margin:auto;
 }
 
 
 h2{
-  text-align:center;
-  color:#ff1493;
-  margin:10px;
+text-align:center;
+color:#ff1493;
+margin:10px;
 }
 
 
 .display{
-  width:100%;
-  height:70px;
-  background:#fff0f6;
-  border:none;
-  border-radius:15px;
-  text-align:right;
-  font-size:32px;
-  padding:15px;
-  margin-bottom:15px;
+width:100%;
+height:70px;
+background:#fff0f6;
+border:none;
+border-radius:15px;
+font-size:32px;
+text-align:right;
+padding:15px;
+margin-bottom:15px;
 }
 
 
 .botoes{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:10px;
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:10px;
 }
 
 
-.botoes button{
-  height:60px;
-  border:none;
-  border-radius:15px;
-  font-size:22px;
-  font-weight:bold;
+button{
+height:60px;
+border:none;
+border-radius:15px;
+font-size:22px;
+font-weight:bold;
+cursor:pointer;
 }
 
 
 .numero{
-  background:#ffe4f1;
+background:#ffe4f1;
 }
 
 
 .operador{
-  background:#ff69b4;
-  color:white;
+background:#ff69b4;
+color:white;
 }
 
 
 .igual{
-  background:#ff1493;
-  color:white;
+background:#ff1493;
+color:white;
 }
 
 
 .limpar{
-  background:#ff8fab;
-  color:white;
+background:#ff8fab;
+color:white;
 }
+
 
 </style>
 
 </head>
 
+
 <body>
-
-
-<!-- LOGIN -->
-
-<div id="login">
-
-<h1>Login</h1>
-
-<input 
-id="email"
-type="email"
-placeholder="Email">
-
-
-<input
-id="senha"
-type="password"
-placeholder="Senha">
-
-
-<button onclick="entrar()">
-Entrar
-</button>
-
-
-</div>
-
-
-
-<!-- CALCULADORA -->
-
-<div id="calculadora">
 
 
 <div class="caixa">
 
 
-<img class="kitty"
-src="https://p7.hiclipart.com/preview/578/42/410/computer-icons-hello-kitty-clip-art-others.jpg">
+<img 
+class="kitty"
+src="hello-kitty.gif"
+alt="Hello Kitty">
 
 
 <h2>Calculadora 🐱</h2>
 
 
-<input
+<input 
 id="display"
 class="display"
 readonly>
+
 
 
 <div class="botoes">
@@ -232,40 +169,8 @@ readonly>
 
 </div>
 
-</div>
-
-
 
 <script>
-
-
-function entrar(){
-
-let email =
-document.getElementById("email").value;
-
-let senha =
-document.getElementById("senha").value;
-
-
-// login de exemplo
-
-if(email=="alana.linda@gmail.com" &&
-senha=="123456"){
-
-document.getElementById("login").style.display="none";
-
-document.getElementById("calculadora").style.display="block";
-
-
-}else{
-
-alert("Email ou senha incorretos!");
-
-}
-
-}
-
 
 
 let display =
@@ -273,16 +178,12 @@ document.getElementById("display");
 
 
 function add(valor){
-
 display.value += valor;
-
 }
 
 
 function limpar(){
-
 display.value="";
-
 }
 
 
@@ -306,8 +207,12 @@ display.value="Erro";
 
 document.addEventListener("keydown",function(e){
 
-if(e.key=="Enter"){
+if(e.key==="Enter"){
 calcular();
+}
+
+if(e.key==="Escape"){
+limpar();
 }
 
 });
@@ -317,4 +222,5 @@ calcular();
 
 
 </body>
+
 </html>
