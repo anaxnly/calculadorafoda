@@ -6,102 +6,89 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Calculadora Hello Kitty 🐱</title>
+<title>Calculadora</title>
 
 <style>
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}
-
 body{
-min-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-background:linear-gradient(135deg,#ffd6e7,#fff0f6);
-font-family:Arial,sans-serif;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg,#ffd6e7,#fff0f6);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+    margin:0;
 }
 
 
-.caixa{
-width:340px;
-background:white;
-padding:20px;
-border-radius:25px;
-border:4px solid #ff69b4;
-box-shadow:0 0 25px #ffb6d9;
+.container{
+    background:white;
+    width:450px;
+    padding:25px;
+    border-radius:20px;
+    box-shadow:0 0 20px rgba(255,105,180,.3);
+    border:4px solid #ff69b4;
+    text-align:center;
 }
 
 
 .kitty{
-width:160px;
-height:160px;
-object-fit:contain;
-display:block;
-margin:auto;
+    width:130px;
+    height:auto;
 }
 
 
-h2{
-text-align:center;
-color:#ff1493;
-margin:10px;
+h1{
+    color:#ff1493;
 }
 
 
-.display{
-width:100%;
-height:70px;
-background:#fff0f6;
-border:none;
-border-radius:15px;
-font-size:32px;
-text-align:right;
-padding:15px;
-margin-bottom:15px;
-}
+input{
 
+    width:90%;
+    padding:12px;
+    margin:8px;
+    border:2px solid #ff69b4;
+    border-radius:10px;
+    font-size:16px;
 
-.botoes{
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap:10px;
 }
 
 
 button{
-height:60px;
-border:none;
-border-radius:15px;
-font-size:22px;
-font-weight:bold;
-cursor:pointer;
+
+    background:#ff69b4;
+    color:white;
+    border:none;
+    padding:12px 30px;
+    border-radius:10px;
+    cursor:pointer;
+    font-size:16px;
+
 }
 
 
-.numero{
-background:#ffe4f1;
+button:hover{
+
+    background:#ff1493;
+
 }
 
 
-.operador{
-background:#ff69b4;
-color:white;
+.resultado{
+
+    margin-top:20px;
+    background:#fff0f6;
+    padding:15px;
+    border-radius:15px;
+
 }
 
 
-.igual{
-background:#ff1493;
-color:white;
-}
+p{
 
+    font-weight:bold;
 
-.limpar{
-background:#ff8fab;
-color:white;
 }
 
 
@@ -113,112 +100,190 @@ color:white;
 <body>
 
 
-<div class="caixa">
+<div class="container">
 
 
 <img 
 class="kitty"
-src="hello-kitty.gif"
-alt="Hello Kitty">
+src="https://p7.hiclipart.com/preview/578/42/410/computer-icons-hello-kitty-clip-art-others.jpg"
+alt="imagem">
 
 
-<h2>Calculadora 🐱</h2>
-
-
-<input 
-id="display"
-class="display"
-readonly>
+<h1>Calculadora</h1>
 
 
 
-<div class="botoes">
+<input type="text" id="v1" placeholder="Digite o primeiro número">
 
 
-<button class="limpar" onclick="limpar()">C</button>
-<button class="operador" onclick="add('(')">(</button>
-<button class="operador" onclick="add(')')">)</button>
-<button class="operador" onclick="add('/')">÷</button>
+<input type="text" id="v2" placeholder="Digite o segundo número">
 
 
-<button class="numero" onclick="add('7')">7</button>
-<button class="numero" onclick="add('8')">8</button>
-<button class="numero" onclick="add('9')">9</button>
-<button class="operador" onclick="add('*')">×</button>
+
+<br>
 
 
-<button class="numero" onclick="add('4')">4</button>
-<button class="numero" onclick="add('5')">5</button>
-<button class="numero" onclick="add('6')">6</button>
-<button class="operador" onclick="add('-')">−</button>
+
+<button onclick="calcular()">Calcular</button>
 
 
-<button class="numero" onclick="add('1')">1</button>
-<button class="numero" onclick="add('2')">2</button>
-<button class="numero" onclick="add('3')">3</button>
-<button class="operador" onclick="add('+')">+</button>
 
 
-<button class="numero" onclick="add('0')">0</button>
-<button class="numero" onclick="add('.')">.</button>
-<button class="igual" onclick="calcular()">=</button>
+<div class="resultado">
+
+
+<p id="p1"></p>
+
+<p id="p2"></p>
+
+<p id="p3"></p>
+
+<p id="p4"></p>
+
+<p id="p5"></p>
 
 
 </div>
 
 
 </div>
+
+
 
 
 <script>
 
 
-let display =
-document.getElementById("display");
+
+function pegarNumeros(){
 
 
-function add(valor){
-display.value += valor;
+    let v1 = Number(document.getElementById("v1").value);
+
+    let v2 = Number(document.getElementById("v2").value);
+
+
+    return {v1,v2};
+
 }
 
 
-function limpar(){
-display.value="";
-}
+
 
 
 function calcular(){
 
-try{
 
-display.value =
-eval(display.value);
+    let valores = pegarNumeros();
+
+
+    let v1 = valores.v1;
+
+    let v2 = valores.v2;
+
+
+
+    if(isNaN(v1) || isNaN(v2)){
+
+
+        alert("Digite somente números!");
+
+        return;
+
+    }
+
+
+
+
+    document.getElementById("p1").innerHTML =
+    "➕ Soma: " + (v1 + v2);
+
+
+
+
+    document.getElementById("p2").innerHTML =
+    "➖ Subtração: " + (v1 - v2);
+
+
+
+
+    document.getElementById("p3").innerHTML =
+    "✖ Multiplicação: " + (v1 * v2);
+
+
+
+
+    if(v2 === 0){
+
+
+        document.getElementById("p4").innerHTML =
+        "❌ Erro: divisão por zero";
+
+
+    }else{
+
+
+        document.getElementById("p4").innerHTML =
+        "➗ Divisão: " + (v1 / v2);
+
+
+    }
+
+
+
+
+    let comparacao;
+
+
+
+    if(v1 > v2){
+
+        comparacao = "v1 é maior que v2";
+
+    }
+
+
+    else if(v1 < v2){
+
+
+        comparacao = "v1 é menor que v2";
+
+
+    }
+
+
+    else{
+
+
+        comparacao = "v1 é igual a v2";
+
+
+    }
+
+
+
+
+    let parImpar = 
+    (v1 % 2 === 0) ? "Par" : "Ímpar";
+
+
+
+
+
+    document.getElementById("p5").innerHTML =
+
+    comparacao + 
+    "<br>O primeiro número é: " + parImpar;
+
+
 
 }
 
-catch{
 
-display.value="Erro";
-
-}
-
-}
-
-
-document.addEventListener("keydown",function(e){
-
-if(e.key==="Enter"){
-calcular();
-}
-
-if(e.key==="Escape"){
-limpar();
-}
-
-});
 
 
 </script>
+
 
 
 </body>
